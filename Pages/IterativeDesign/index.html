@@ -1,0 +1,230 @@
+<link href='https://fonts.googleapis.com/css?family=Duru Sans' rel='stylesheet'/>
+<!doctype html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf‑8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Nathan Robbins – Redesign</title>
+
+    <link rel="stylesheet" href="iterative.css" />
+    <style media="print">
+        body,
+        .scrollable-window {
+          overflow: visible !important;
+          height: auto !important;
+        }
+      
+        .main-page-content,
+        .landing-section,
+        .scroll-indicator {
+          transform: none !important;
+          opacity: 1 !important;
+          animation: none !important;
+        }
+      
+        .scroll-indicator,
+        .decoration-bubble {
+          display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="screen">
+        <div class="topbar">
+            Nathan Robbins
+            <div class="topbar-menu">
+                <span class="menu-opt" onclick="window.location.href='/cs1300/Portfolio/';" tabindex="1">Home</span>
+                <span class="menu-opt" tabindex="2">Resume</span>
+                <span class="menu-opt" tabindex="3">Contact</span>
+            </div>
+        </div>
+        <div class="scrollable-window" id="scrollcont">
+            <div class="main-page-content">
+                <div class='landing-section'>
+                    <div class="page-title">Designing With a Team</div>
+                    <div class="divider"></div>
+                    <div class="page-description">
+                        <div class="page-description-text-container">
+                            <span class="page-description-text">All design is </span>
+                            <span class="page-description-text red">iterative</span>
+                            <span class="page-description-text">. My experience with game design and web development has shown me that the key to success is</span>
+                            <span class="page-description-text blue">openness to change </span>
+                            <span class="page-description-text">and seeking </span>
+                            <span class="page-description-text green">diverse perspectives.</span>
+                            <br/>
+                            <br/>
+                            <span class="page-description-text">In this case study, I worked with Mai-Anh Nguyen, Jason Uranta, and Kaluki Kithome to design an interface for large-scale uploads of recipient information for a corporate gifting platform. From developing initial concepts within our group to showcasing our final mockup feature, we leveraged our diverse perspectives and multiple opportunities for feedback and revision to create a more robust and polished feature. Here was our process.</span>
+                        </div>
+                    </div>
+                    <div class='scroll-indicator'>
+                        <img class="scroll-indicator-image" src="Images/DownArrow.png" alt="Down arrow indicating more content below"/>
+                    </div>
+                </div>
+                <div class="section-title">
+                    The Problem Statement
+                </div>
+                <div class="divider"></div>
+                <div class='section-description'>
+                The first step of any design process is identifying the problem(s) one hopes to solve. In our case, we communicated with the gifting platform's lead UI Designer to establish a solid foundation for our work. The problem was that the platform's current interface for CSV uploading was too restrictive, frustrating customers and limiting businesses' ability to customize their interface. We were tasked with creating an interface that could accommodate a diverse set of inputs while streamlining the whole process for the customer.
+                </div>
+                <div class="divider large"></div>
+                <div class="divider large visible"></div>
+                <div class="images-panel small">
+                    <div class="image-container">
+                        <img class="image" src="Images/banner.png" alt="Banner image from the corporate gifting platform"/>
+                    </div>
+                </div>
+                <div class="divider large visible"></div>
+                <div class="divider large"></div>
+                <div class="section-title">
+                    Step 1: Initial Concepting
+                </div>
+                <div class="divider"></div>
+                <div class='section-description'>               
+                Once we had a clear idea of the problem we were trying to solve, each member of our team sketched out a series of screens representing four unique implementations of the feature. None of us communicated during this process, and we didn’t look at Zest’s current interface. The purpose of this step was to generate fresh ideas. Here were my sketches:
+                </div>
+                <div class="divider"></div>
+                <div class='images-panel'>
+                    <div class="image-container">
+                        <img class="image" src="Images/sketch1.png" alt="First hand‑drawn sketch of CSV upload workflow"/>
+                    </div>
+                    <div class="image-container">
+                        <img class="image" src="Images/sketch2.png" alt="Second hand‑drawn sketch detailing error handling interface"/>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class='section-description'> 
+                    My sketches lay out a possible user interaction. First, the user may choose to upload a CSV or add recipients manually.
+                    After uploading a CSV, they see the field mappings and can fix any errors that appear.
+                    Finally they see a finalized recipients list after submitting.
+                    <div class="divider"></div>
+                    <span class="page-description-text bold">Key features:</span>
+                    <div class="divider"></div>
+                    1. Presents the user with alternatives to CSV upload
+                    <br/>
+                    2. Option to download CSV template
+                    <br/>
+                    3. Original CSV rendered in-window
+                    <br/>
+                    4. Visualization of mapping from user-supplied columns to required fields (First & Last → Full Name)
+                    <br/>
+                    5. Errors displayed on the side; counter for number of errors remaining
+                    <br/>
+                    6. User must fix all errors before continuing
+                    <br/>
+                    <br/>
+                    My goal with my sketched feature was to balance the flexibility our corporate gifting platform wanted and the simplicity needed to make it accessible. The game designer in me wanted to give users the ability to customize their interaction with the interface, and the UI designer knew I had to be careful not to overwhelm them with too many options. Features like the visualized field mappings and alternative upload options give users additional flexibility. Features like strict error checking and the error counter prevent mistakes and give users confidence in themselves and the system.
+                </div>
+                <div class="divider"></div>
+                <div class="divider large visible"></div>
+                <div class="divider large"></div>
+                <div class="section-title">
+                    Step 2: Combining Our Concepts
+                </div>
+                <div class="divider"></div>
+                <div class='section-description'>
+                Once all four of us had come up with unique implementations of the feature, we combined them into a single wireframe. We built our prototype using the best ideas from each of our sketches. Using four independently-created concepts allowed us to identify which features we had converged on, while also prompting us to investigate areas where our implementations differed. The result (shown below) was a much more robust first draft than any one of us could have created alone.
+                </div>
+                <div class="divider"></div>
+                <div class="images-panel medium-large">
+                    <div class="image-container">
+                        <img class="image" src="Images/wireframe.png" alt="Team wireframe prototype showing CSV upload flow"/>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class='section-description'>
+                    In our finalized wireframe prototype, made using Balsamiq, the feature is broken up into three main screens. The first displays information about required fields and prompts the user to upload their CSV in the upload field. Once uploaded, the CSV is rendered in-window along with a visual representation of the field mappings and warnings about any major (column-wide) errors detected. This allows major errors to be fixed, and incorrect field mappings to be corrected, before moving on to finer-grained error handling. The final screen allows users to fix cell-specific errors before submitting their finalized list.
+                    <br/>
+                    <br/>
+                    The wireframe combines features from all four of our initial concepts. Here are the features we kept from my sketches:
+                    <br/>
+                    <br/>
+                    1. CSV fully rendered in-window so user can see field mappings on their original import
+                    <br/>
+                    2. Error messages displayed to the side of each row
+                    <br/>
+                    3. Cells in rendered CSV are editable
+                    <br/>
+                    4. Error counter
+    
+                </div>
+                <div class="divider"></div>
+                <div class="divider large visible"></div>
+                <div class="divider"></div>
+                <div class="section-title">
+                    Step 3: Getting Feedback
+                </div>
+                <div class="divider "></div>
+                <div class='section-description'>
+                After completing our wireframe, we received feedback on it from a Teaching Assistant for our class. Below are some of the main points of feedback we received.
+                <br/>
+                <br/>
+                1. Page titles (in concert with progress bar) could help clarify the purpose of each page
+                <br/>
+                2. Adding a “reupload” button to the rendered-CSV page would eliminate redundant clicks
+                <br/>
+                3. Moving error messages to a popup in each cell would make the UI more informative and help formatting with multiple errors on one row
+                <br/>
+                4. Add back button to error-editing page for consistency
+                <br/>
+                5. Progress bar looked a too interactive/button like
+                <br/>
+                6. Add clarification to each item in the “required fields” list for more specificity
+                <br/>
+                <br/>
+                Having a novice user look over our prototype webpage was invaluable for discovering where our feature was unclear or lacking functionality. It gave us a clear direction for the next phase of our work: creating a more polished mockup of our feature.
+                </div>
+                <div class="divider"></div>
+                <div class="divider large visible"></div>
+                <div class="divider"></div>
+                <div class="section-title">
+                Step 4: High-Fi Prototype
+                </div>
+                <div class="divider"></div>
+                <div class='section-description'>
+                We developed our final prototype using Figma, which allowed us to model the interactions we expected users to perform. The combination of feedback and enhanced modeling enabled us to anticipate the pros and cons of each choice more accurately. Our final prototype closely resembles our original wireframe, incorporating several minor changes that enhance its functionality, usability, and accessibility.
+                </div>
+                <div class="divider large"></div>
+                <div class="images-panel medium-large">
+                    <iframe width="800" height="450" src="https://embed.figma.com/proto/WKDN65oRu2n56YpNzpMHAu/Zest-Hi-Fi-Prototype?page-id=0%3A1&node-id=6-3&viewport=176%2C312%2C0.1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=6%3A3&embed-host=share" tabindex="4" title="Embedded Figma prototype"></iframe>
+                </div>
+                <div class="divider large"></div>
+                <div class='section-description'>
+                Here are key changes we made in our polished prototype:
+                <br/>
+                <br/>
+                1. Included hoverable information icons next to each item in the “required fields” list (response to feedback #6)
+                <br/>
+                3. Moved error messages so they are local to their cell (response to feedback #3)
+                <br/>
+                4. Made the styling and messages of navigation buttons consistent across each page (response to feedback #4)
+                <br/>
+                5. Made our progress bar look less like a button and more like a timeline (response to feedback #5)
+                <br/>
+                6. Added a confirmation and celebration page to our workflow to improve the responsiveness of our page
+    
+                </div>
+                <div class="divider"></div>
+                <div class='divider large visible'></div>
+                <div class='divider'></div>
+                <div class="section-title">
+                    Final Thoughts
+                </div>
+                <div class='divider'></div>
+                <div class='section-description'>
+                Working within groups is often a fact of being a professional designer. Project partners can bring conflicting ideas and frustrations, but when embraced, they offer a world of opportunity for the sharing and synthesis of ideas. In this case study, our finished product was an equal creation of all four of us, and it benefited immensely from it. I will always seek out other passionate people to work with, no matter the project, because I believe it creates better products. 
+                <br/>
+                    <br/>
+    As this case study showed, working with partners isn’t the only way to leverage diverse perspectives. The feedback we received from an outside observer provided crucial direction for refining our prototype. In general, I believe feedback is one of the most important tools a designer can use. In game design, playtesting often takes up a major portion of development time, as the only way to tell if things are really working is to try them out on players. 
+    <br/>
+                    <br/>
+    I am confident in my skills as a designer, and certain that anything I can come up with will be improved by sharing it with others.
+    
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="module" src="script.js"></script>
+</body>
+</html>

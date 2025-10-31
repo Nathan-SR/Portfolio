@@ -1,0 +1,251 @@
+<link href='https://fonts.googleapis.com/css?family=Duru Sans' rel='stylesheet'/>
+<!doctype html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf‑8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Nathan Robbins – Redesign</title>
+
+    <link rel="stylesheet" href="redesign.css" />
+    <style media="print">
+        body,
+        .scrollable-window {
+          overflow: visible !important;
+          height: auto !important;
+        }
+      
+        .main-page-content,
+        .landing-section,
+        .scroll-indicator {
+          transform: none !important;
+          opacity: 1 !important;
+          animation: none !important;
+        }
+      
+        .scroll-indicator,
+        .decoration-bubble {
+          display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="screen">
+        <div class="topbar">
+            Nathan Robbins
+            <div class="topbar-menu">
+                <span class="menu-opt" onclick="window.location.href='/cs1300/Portfolio/';" tabindex="1">Home</span>
+                <span class="menu-opt" tabindex="2">Resume</span>
+                <span class="menu-opt" tabindex="3">Contact</span>
+            </div>
+        </div>
+        <div class="scrollable-window" id="scrollcont">
+            <div class="main-page-content">
+                <div class='landing-section'>
+                    <div class="page-title">Designing With Principles</div>
+                    <div class="divider"></div>
+                    <div class="page-description">
+                        <div class="page-description-text-container">
+                            <span class="page-description-text">What makes an interface well-designed? Websites, video games, professional software, and physical interfaces are judged on a multitude of criteria, differing for each interface and each user. Evaluation is an inherently subjective process. Despite this, I believe three tenets of </span>
+                            <span class="page-description-text blue">accessibility, </span>
+                            <span class="page-description-text green">reponsiveness, </span>
+                            <span class="page-description-text">and </span>
+                            <span class="page-description-text red">adaptability, </span>
+                            <span class="page-description-text"> are the closest thing we have to objective metrics. These are the things I keep in mind while designing my interfaces: </span>
+                            <br/>
+                            <br/>
+                            <span class="page-description-text">An </span>
+                            <span class="page-description-text blue">accessible </span>
+                            <span class="page-description-text"> interface is built to accommodate a diverse set of users, improving everyone's experience.  </span>
+                            <br/>
+                            <br/>
+                            <span class="page-description-text">A </span>
+                            <span class="page-description-text green">responsive</span>
+                            <span class="page-description-text"> interface provides useful visual feedback, so users feel confident navigating it. </span>
+                            <br/>
+                            <br/>
+                            <span class="page-description-text">An </span>
+                            <span class='page-description-text red'>adaptive </span>
+                            <span class='page-description-text'>interface functions in many different contexts, so users can interact with it on their own terms.</span>
+                        </div>
+                    </div>
+                    <div class='scroll-indicator'>
+                        <img class="scroll-indicator-image" src="Images/DownArrow.png" alt="Down arrow indicating more content below"/>
+                    </div>
+                </div>
+                <div class="section-title">
+                    The Case Study: An Online Menu
+                </div>
+                <div class="divider"></div>
+                <div class='section-description'>
+                I frequent a restaurant called East Side Pockets. The restaurant itself is charming, and their food is delicious. Their website, however, does not represent the quality of their product, so I redesigned it with my three tenets in mind. I will take you through my process.
+                </div>
+                <div class="divider large visible"></div>
+                <div class="images-panel small">
+                    <div class="image-container">
+                        <img class="image" src="Images/main-page.png" alt="Original East Side Pockets website menu page"/>
+                        <div class="image-caption">
+                        The original website's Menu page.
+                        </div>
+                    </div>
+                </div>
+                <div class="divider large visible"></div>
+                <div class="section-title">
+                    Step 1: Identifying Issues
+                </div>
+                <div class="divider"></div>
+                <div class='section-description'>               
+                The first step in my process was identifying what needed to change. I started by understanding what the page was trying to do, and found where the implementation got in the way. Then, I critically examined how well the three tenets of accessibility, responsiveness, and adaptiveness were being followed.  I boiled my findings down into three main problem areas that needed addressing.
+                </div>
+                <div class='images-panel center'>
+                    <div class="side-text">
+                        <span class="page-description-text bold">Problem 1: Cluttered Chaos</span>
+                        <br/>
+                        <br/>
+                        The large logo banner persists between pages, obscuring the menu itself. 
+                        <br/>
+                        <br/>
+                        Each button on the banner is interactable with keyboard navigation, potentially causing confusion. 
+                        <br/>
+                        <br/>
+                        The gratuitous buttons on the top menu obfuscate the most important links: home, menu, and contact (menu and online ordering lead to the same place).
+                        <br/>
+                        <br/>
+                        The placement of interactive elements is haphazard, contributing to a cluttered, overwhelming first impression of the page. 
+                    </div>
+                    <div class="image-container">
+                        <img class="image" src="Images/problem1.png" alt="Screenshot highlighting cluttered banner and menu issues"/>
+                    </div>
+                    <div class="side-text">
+                        <span class="page-description-text bold">Problem 2: Visual Inconsistency</span>
+                        <br/>
+                        <br/>
+                        Nearly every group of interactive elements on the page are unique, having their own colors, layouts, and responses to user input.
+                        <br/>
+                        <br/>
+                        The top menu does not stick to the top of the page, forcing the user to scroll all the way to the top if they want to access it again. 
+                        <br/>
+                        <br/>
+                        On phone dimensions, the logo banner takes up the entire screen, even hiding the top menu.
+                    </div>
+                </div>
+                <div class='images-panel center'>
+                <div class="image-container small">
+                        <img class="image" src="Images/problem2.png" alt="Screenshot showing inconsistent visual elements across the page"/>
+                    </div>
+                    <div class="side-text large">
+                        <span class="page-description-text bold">Problem 3: Dull and Obscure Presentation</span>
+                        <br/>
+                        <br/>
+                        The menu items themselves are presented mostly as blocks of text with only minimal whitespace separating them. 
+                        <br/>
+                        <br/>
+                        Images next to menu items are tiny and pixelated, making them almost useless, if not detrimental. They are also inconsistent, being present on only a few menu items. 
+                        <br/>
+                        <br/>
+                        The icons next to the title lack explanation. I was confused about what the thumbs up icon was meant to represent; and any ambiguity about things like halal or gluten free options could be dangerous.
+                        <br/>
+                        <br/>
+                        There is no obvious place to click to order the items. The item titles are interactable, which I found out by trial and error. 
+                        <br/>
+                        <br/>
+                        Alt text on images is present but not descriptive.
+                    </div>
+                </div>
+                <div class="divider large"></div>
+                <div class="section-title">
+                    Observations
+                </div>
+                <div class="divider"></div>
+                <div class='section-description'>
+                As I had suspected, the old website had many problems. Any such website’s purpose is to help users learn more about the restaurant and facilitate easy online ordering. The various confusing redundancies, visual inconsistencies, and poorly presented content made the menu harder to navigate and generally less appealing. 
+                <br/>
+                <br/>
+                In terms of accessibility, there were multiple glaring issues for keyboard/screen-reader users and those with visual impairments, not to mention the general impediments to the learnability and efficiency of the interface. The website was generally but inconsistently responsive to user input. It was also minimally adaptive, with the banner covering the entire screen in smaller sizes. 
+                </div>
+                <div class="divider large visible"></div>
+                <div class="divider"></div>
+                <div class="section-title">
+                    Step 2: Initial Mockups
+                </div>
+                <div class="divider"></div>
+                <div class='section-description'>
+                Before I got started working on the actual website, I created mockups in Figma. This allowed me to easily iterate and test the design on multiple screen sizes, so I could ensure that my components were adaptive and accessible. 
+                </div>
+                <div class="divider large"></div>
+                <embed src="Images/Group 2.pdf" type="application/pdf" width="70%" height="600px" tabindex="4" />
+                <div class="divider large"></div>
+                <div class="divider large visible"></div>
+                <div class="section-title">
+                    My Design
+                </div>
+                <div class="divider"></div>
+                <div class='section-description'>
+                My final design is a streamlined overhaul of the original website's menu. Reduced visual clutter, a more organized and consistent structure, and a more refined presentation make it more functional while improving its accessibility, responsiveness, and adaptiveness.
+                </div>
+                <div class="divider large visible"></div>
+                <div class="images-panel medium-large">
+                    <div class="image-container">
+                        <img class="image" src="Images/final.png" alt="Screenshot of the redesigned East Side Pockets menu page"/>
+                        <div class="image-caption">
+                            You can visit the site at: https://nathan-sr.github.io/cs1300/EastSidePockets/
+                        </div>
+                    </div>
+                </div>
+                <div class='images-panel bubble'>
+                    <div class="image-container">
+                        <img class="image" src="Images/overview.png" alt="Annotated overview of redesign improvements"/>
+                    </div>
+                    <div class="text-bubble-container">
+                        <div class='text-bubble blue'>
+                            <div class='text-bubble-text'>
+                            I streamlined the entire page to improve its functioning, accessibility, and responsiveness. I removed the intrusive logo banner. I pared down the cluttered top menu, and reduced the number of buttons throughout the page. I unified the responsive elements so they are all highlighted the same color on hover. All of these changes make the interface more effective and usable.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='images-panel bubble'>
+                    <div class="text-bubble-container">
+                        <div class='text-bubble yellow'>
+                            <div class='text-bubble-text'>
+                            I refreshed the content of the menu. I provided a key for icons in addition to making them more distinctive. I made the images the centerpiece of each item to help online shoppers assess their orders. I provided a clearly interactive button for adding items to the cart. I added more space in between elements for a cleaner, easier-to-follow look.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img class="image" src="Images/menu-items.png" alt="Close-up of redesigned menu items with images and add-to-cart buttons"/>
+                    </div>
+                </div>
+                <div class='images-panel bubble'>
+                    <div class="image-container">
+                        <img class="image  small" src="Images/small-screen.png" alt="Redesigned menu shown on a small mobile screen"/>
+                    </div>
+                    <div class="text-bubble-container">
+                        <div class='text-bubble purple'>
+                            <div class='text-bubble-text'>
+                            I made the page more adaptive to different screen sizes. Gone is the massive logo banner. On smaller screen sizes, images shrink to take up less space, and menu items automatically organize into smaller rows for easy scrolling. The result is a page that feels like it was designed to be adaptive.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='divider large visible'></div>
+                <div class='divider large'></div>
+                <div class="section-title">
+                    Final Thoughts
+                </div>
+                <div class='divider'></div>
+                <div class='section-description'>
+                I hope my process here has illustrated how I apply the three tenets of accessibility, responsiveness, and adaptiveness in conjunction with rigorous case-by-case analysis to create functional interfaces. While I used them here to redesign a website, I employ them most frequently in my work with game design, where all three are crucial to making fun and functional games. 
+                    <br/>
+                    <br/>
+                    Accessibility opens games up to larger audiences, and changes targeted at helping one group---such as the option to rebind keys---often help many outside of that group. In games, responsiveness might take the form of juicy explosions or responsive UI elements. Responsiveness is key to the satisfying ‘fun’ feeling that keeps people coming back to the games they love. Adaptiveness is also crucial for games, where the existence of many platforms gates entire markets behind fundamentally different interfaces. 
+                    <br/>
+                    <br/>
+                    Good design feels intuitive, but it’s built on deliberate choices—and these three principles guide mine.
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="module" src="script.js"></script>
+</body>
+</html>

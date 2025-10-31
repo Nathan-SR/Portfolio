@@ -1,0 +1,198 @@
+<link href='https://fonts.googleapis.com/css?family=Duru Sans' rel='stylesheet'/>
+<!doctype html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf‑8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Nathan Robbins – Accessible Components</title>
+
+    <link rel="stylesheet" href="AC.css" />
+    <style media="print">
+        body,
+        .scrollable-window {
+          overflow: visible !important;
+          height: auto !important;
+        }
+      
+        .main-page-content,
+        .landing-section,
+        .scroll-indicator {
+          transform: none !important;
+          opacity: 1 !important;
+          animation: none !important;
+        }
+      
+        .scroll-indicator,
+        .decoration-bubble {
+          display: none !important;
+        }
+    </style>
+</head>
+<body>
+<div class="screen">
+    <div class="topbar">
+        Nathan Robbins
+        <div class="topbar-menu">
+            <span class="menu-opt" onclick="window.location.href='/cs1300/Portfolio/';" tabindex="1">Home</span>
+                <span class="menu-opt" tabindex="2">Resume</span>
+                <span class="menu-opt" tabindex="3">Contact</span>
+        </div>
+    </div>
+    <div class="scrollable-window" id="scrollcont">
+        <div class="main-page-content">
+            <div class='landing-section'>
+                <div class="page-title">Designing Interaction</div>
+                <div class="divider"></div>
+                <div class="page-description">
+                    <div class="page-description-text-container">
+                        <span class="page-description-text italic">Every click counts—and in a world of complex digital interfaces, a single search bar can define a user’s experience.</span>
+                        <br/>
+                        <br/>
+                        <span class="page-description-text">Modern user interfaces are</span>
+                        <span class="page-description-text red"> complex.</span>
+                        <span class="page-description-text">While browsing Netflix or shopping on Amazon, users interact with countless buttons and inputs. To</span>
+                        <span class="page-description-text green"> maintain consistency</span>
+                        <span class="page-description-text"> and </span>
+                        <span class="page-description-text green">reduce cognitive load</span>
+                        <span class="page-description-text">, designers reuse interface elements. But when something as simple as a button appears fifty times, even minor design choices can ripple across an entire product.</span>
+                        <span class="page-description-text blue"> I aim for my interfaces to disappear—prioritizing intuitiveness and accessibility above all else.</span>
+                        <span class="page-description-text"> In this project, I’ll walk through the design of a deceptively simple component: the search bar dropdown.</span>
+                    </div>
+                </div>
+                <div class='scroll-indicator'>
+                    <img class="scroll-indicator-image" src="Images/DownArrow.png" alt="Down arrow indicating more content below"/>
+                </div>
+            </div>
+            <div class="section-title">
+                Why the Search Bar Dropdown?
+            </div>
+            <div class="divider"></div>
+            <div class='section-description'>
+            Search bars are everywhere—from search engines to ecommerce sites, messaging platforms to code editors. When users aren’t quite sure what they’re looking for, suggested result dropdowns are crucial in guiding them. If users don’t know exactly what they want, ‘suggested results’ dropdowns are key in directing them. However, I have one major problem with many search dropdowns: they obscure as much information as they provide. In the name of simplicity, many dropdowns serve as navigation hubs while obscuring the destinations. I wanted to make a dropdown that could provide more information without compromising simplicity or intuitiveness.
+            </div>
+            <div class="divider large visible"></div>
+            <div class="images-panel small">
+                <div class="image-container">
+                    <img class="image" src="Images/searchbars.png" alt="Comparison of search bar designs from multiple websites"/>
+                </div>
+            </div>
+            <div class="divider large visible"></div>
+            <div class="section-title">
+                Market Research
+            </div>
+            <div class="divider"></div>
+            <div class='section-description'>               
+            Before starting, I analyzed how Google, Amazon, and Discord approach search dropdowns—each reflecting different tradeoffs in usability, aesthetics, and intent.
+            </div>
+            <div class='images-panel bubble'>
+                <div class="image-container">
+                    <img class="image" src="Images/googlesearch.png" alt="Google search dropdown showing suggested queries"/>
+                    <div class="image-caption">
+                        Google's search bar with suggested results. First result highlighted using tab key; other highlighted using mouse.
+                    </div>
+                </div>
+                <div class="text-bubble-container">
+                    <div class='text-bubble blue'>
+                        <div class='text-bubble-text'>
+                        Google’s minimalist dropdown shows only the search term. The delete (‘x’) option appears on hover. Keyboard navigation is solid, but pressing Escape doesn’t exit the dropdown—it selects the first suggestion, which can be confusing. Clicking on an option takes the user to a new page.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='images-panel bubble'>
+                <div class="text-bubble-container">
+                    <div class='text-bubble yellow'>
+                        <div class='text-bubble-text'>
+                        Amazon’s dropdown shares Google’s minimalist style, but Escape cleanly exits the search bar, which I found more intuitive. Their integration of generative AI chat options adds flexibility at the cost of simplicity.  Clicking on an option takes the user to a new page.
+                        </div>
+                    </div>
+                </div>
+                <div class="image-container">
+                    <img class="image" src="Images/amazonsearch.png" alt="Amazon search dropdown with AI chat suggestion"/>
+                    <div class="image-caption">
+                        Amazon's search bar with suggested results. Result highlighted using arrow keys.
+                    </div>
+                </div>
+            </div>
+            <div class='images-panel bubble'>
+                <div class="image-container">
+                    <img class="image" src="Images/discordsearch.png" alt="Discord search dropdown featuring filter chips"/>
+                    <div class="image-caption">
+                        Discord's search bar with suggested filter options. Blue highlighted option selected with arrow keys; other one with mouse.
+                    </div>
+                </div>
+                <div class="text-bubble-container">
+                    <div class='text-bubble purple'>
+                        <div class='text-bubble-text'>
+                        Discord takes a more maximalist approach, surfacing multiple categories and filters directly in the dropdown. This suits its goal of helping users pinpoint specific messages, though it comes at the cost of visual simplicity. Clicking on an option adds a filter to the search term.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='divider large visible'></div>
+            <div class='section-description'>               
+            Google and Amazon guide users broadly, prioritizing clean aesthetics and deferring results and filtering to later pages. Discord, on the other hand, enables highly targeted search from the outset and displays results on the same page. Inspired by all three, I formed three design goals:
+            <br/>
+            <br/>
+            1. Make keyboard navigation intuitive and efficient
+            <br/>
+            2. Streamline the transition from suggestions to results
+            <br/>
+            3. Preserve a clean, minimalist aesthetic
+            </div>
+            <div class='divider large visible'></div>
+            <div class='divider large'></div>
+            <div class="section-title">
+                My Design
+            </div>
+            <div class='divider'></div>
+            <div class='section-description'>
+                My design combines elements from all three search bar dropdowns I investigated. It adheres to Google's minimalist aesthetic, copies Amazon's intuitive keyboard navigation, and takes inspiration from Discord's single-page, front-loaded approach to results navigation.
+            </div>
+            <div class='divider'></div>
+            <div class='images-panel'>
+                <div class="image-container">
+                    <img class="image" src="Images/component.png" alt="Figma mockup of redesigned search dropdown component"/>
+                    <div class="image-caption">
+                        Mockup created in Figma
+                    </div>
+                </div>
+                <div class="side-text">
+                    <span class="page-description-text bold">1. Improving Keyboard Navigation</span>
+                    <br/>
+                    I unified Escape behavior with Amazon’s: pressing Escape exits the search bar entirely, removing ambiguity. More significantly, users can now view and interact with link previews directly in the dropdown—minimizing the need for cumbersome page transitions.
+                    <br/>
+                    <br/>
+                    <span class="page-description-text bold">2. Giving Users Agency</span>
+                    <br/>
+                    The embedded preview makes the dropdown more functional for all users. Those who prefer minimalism can ignore it, while others can take links directly—or even avoid going to a new page altogether. In any case, users can assess each suggestion based on real content, not guesswork.
+                    <br/>
+                    <br/>
+                    <span class="page-description-text bold">3. Minimalist Style</span>
+                    <br/>
+                    Visually, my dropdown mostly adheres to Google’s style. The most dramatic changes are functional, not visual—preserving a streamlined default state.
+                    <br/>
+                    <br/>
+                    As with all my designs, I focused on giving users the flexibility (through functionality) and confidence (through simplicity) to shape their own experience.
+                </div>
+            </div>
+            <div class='divider large visible'></div>
+            <div class="section-title">
+                Final Thoughts
+            </div>
+            <div class='divider'></div>
+            <div class='section-description'>  
+            I believe this design makes search dropdowns more useful while preserving the streamlined appeal that makes them approachable. Still, interface design always involves tradeoffs. While I lean toward empowering users with more information and options, I’m mindful of the risk of overwhelming them.
+            <br/>
+            <br/>
+            It’s possible that users encountering my feature would experience decision fatigue, clicking fewer links. Perhaps part of the appeal of Google’s design lies in its ambiguity—inviting exploration rather than preempting it. Sometimes, the best way to support users is through thoughtful constraints. But when in doubt, I prefer to err on the side of removing barriers.
+            </div>
+            <div class='divider large'></div>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>

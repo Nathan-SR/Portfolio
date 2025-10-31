@@ -134,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     makeRotator(
         querySelect("#rotator‑2"), [
-        { word: "flexibility ", color: "#f2aa00", font: "Kalam" },
         { word: "agency ", color: "#9e72a6", font: "Aldrich" },
         { word: "ideas ", color: "#82c267", font: "Marck Script" },
         { word: "confidence ", color: "#00bbe0", font: "Koh Santepheap" },
