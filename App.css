@@ -1,0 +1,471 @@
+.topbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    height: fit-content;
+}
+
+.topbar-menu {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.menu-opt {
+    cursor: pointer;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: white;
+    font-family: sans-serif;
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+}
+
+@keyframes bob {
+    0% { transform: translate(-50%, -50%) translateY(0) }
+    50% { transform: translate(-50%, -50%) translateY(-10px) }
+    100% { transform: translate(-50%, -50%) translateY(0) }
+}
+
+.circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.blue {
+    background-color: rgb(131, 228, 255, .25);
+    width: 66vw;
+    aspect-ratio: 1/1;
+    animation: bob 4s ease-in-out infinite;
+
+    left: 5.5vw;
+    align-items: flex-end;
+}
+
+.yellow {
+    background-color: rgb(248, 211, 142, .25);
+    width: 39.5vw;
+    aspect-ratio: 1/1;
+    animation: bob 5s ease-in-out infinite;
+    left: 50vw;
+}
+
+.purple {
+    background-color: rgb(221, 147, 233, .35);
+    width: 58.3vw;
+    aspect-ratio: 1/1;
+    animation: bob 6s ease-in-out infinite;
+    left: 96vw;
+}
+
+.scrollable-window {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100vh;
+    background-color: rgb(0, 0, 0, 0);
+}
+
+.main-page-content {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.banner-container {
+    position: relative;
+    height: calc(100vh - 60px);
+}
+
+.circles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 80vw;
+}
+
+.circle-text {
+    position: relative;
+    width: 100%;
+    opacity: 1;
+}
+
+.text-1 {
+    position: relative;
+    font-size: 6vw;
+    color:#00a6d4;
+    font-family: 'Allerta Stencil';
+    font-style: italic;
+    right: 10vw;
+}
+
+.text-2 {
+    position: relative;
+    font-size: 4.5vw;
+    color:#616161;
+    font-family: 'Aldrich';
+    left: 4.5vw;
+}
+
+.text-3 {
+    position: relative;
+    font-size: 5vw;
+    font-weight: bold;
+    color:#ce834a;
+    font-family: 'Kalam';
+    font-style: italic;
+    left: 8.5vw;
+}
+
+.text-4 {
+    position: relative;
+    font-size: 6.5vw;
+    color: rgb(107, 79, 151);
+    font-weight: bold;
+    font-family: 'Koh Santepheap';
+    left: 4.5vw;
+}
+
+.text-5 {
+    margin-right: 22vw;
+    position: relative;
+    font-size: 7vw;
+    color: #ffffff;
+    font-family: 'Marck Script';
+    left: 9vw;
+}
+
+@keyframes scroll-indicator-bob {
+    0% {
+        transform: translate(-50%, -50%) translateY(-8px);
+    }
+    40% {
+        transform: translate(-50%, -50%) translateY(0px); 
+    }
+    41% {
+        transform: translate(-50%, -50%) translateY(0px); 
+    }
+    100% {
+        transform: translate(-50%, -50%) translateY(-8px);
+    }
+}
+
+.scroll-indicator {
+    position: relative;
+    display: flex;
+    opacity: .5;
+    flex-direction: column;
+    justify-content: center;
+    width: min(3.5vw, 35px);
+    height: fit-content;
+    left: 50%;
+    top: 100%;
+    animation: scroll-indicator-bob 1s ease-in infinite;
+}
+
+.personal-statement-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 45vh;
+}
+
+.personal-statement-text {
+    position: relative;
+    width: 50vw;
+    height: 75%;
+    font-size: 40px;
+}
+
+.bottom-bar {
+    position: relative;
+    height: 12vh;
+    border: solid 5px rgb(209, 72, 72);
+}
+
+.statement-text-snippet {
+    font-size: 2.5vw;
+    font-family: 'Duru Sans';
+    font-style: italic;
+    font-weight: bold;
+    transition: opacity 0.6s ease-in-out;
+    opacity: 1;
+}
+
+.fading {
+    opacity: 0;
+}
+
+.portals {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 87.5vh;
+    left: 2vw;
+}
+
+.portals-title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: -20vh;
+    height: 25vh;
+}
+
+.pt-circles-parent {
+    display: flex;
+    flex-direction: row;
+}
+
+.portals-title-circle {
+    position: relative;
+    flex: none;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes portals-circle-bob {
+    0% { transform: translateY(0) }
+    50% { transform: translateY(-10px) }
+    100% { transform: translateY(0) }
+}
+
+.portals-wrapper {
+    position: relative;
+}
+
+.portals-wrapper.zero {
+    left: -14vw;
+    top: 6.5vw;
+    width: 5vw;
+    height: 5vw;
+}
+
+.portals-title-circle.zero {
+    background-color: rgba(255, 98, 0, 0.3);
+    animation: portals-circle-bob 7s ease-in-out infinite;
+}
+
+.portals-wrapper.one {
+    left: -5vw;
+    bottom: -3vw;
+    width: 7vw;
+    height: 7vw;
+}
+
+.portals-title-circle.one {
+    background-color:  rgb(131, 228, 255, .25);
+    animation: portals-circle-bob 4s ease-in-out infinite;
+}
+
+.portals-wrapper.three {
+    left: 37.5vw;
+    bottom: -5.5vw;
+    width: 13vw;
+    height: 13vw;
+}
+
+.portals-title-circle.three {
+    background-color: rgb(131, 228, 255, .35);
+    animation: portals-circle-bob 3s ease-in-out infinite;
+}
+
+.portals-wrapper.four {
+    width: 5.5vw;
+    height: 5.5vw;
+    left: 40.5vw;
+    bottom: -5.5vw;
+}
+
+.portals-title-circle.four {
+    background-color: rgb(248, 211, 142, .4);
+    animation: portals-circle-bob 6s ease-in-out infinite;
+}
+
+.portals-wrapper.five {
+    width: 7vw;
+    height: 7vw;
+    left: 38.5vw;
+    top: 14vw;
+}
+
+.portals-title-circle.five {
+    background-color: rgba(188, 124, 231, 0.3);
+    animation: portals-circle-bob 4s ease-in-out infinite;
+}
+
+.portals-wrapper.six {
+    width: 4vw;
+    height: 4vw;
+    right: 1vw;
+    top: 9vw;
+}
+
+.portals-title-circle.six {
+    background-color: rgba(188, 124, 231, 0.5);
+    animation: portals-circle-bob 3s ease-in-out infinite;
+}
+
+
+.portals-wrapper.seven {
+    width: 7.5vw;
+    height: 7.5vw;
+    right: -4vw;
+    top: 45vw;
+}
+
+
+.portals-wrapper.eight {
+    width: 4vw;
+    height: 4vw;
+    right: -4vw;
+    top: 52vw;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(360deg) }
+}
+
+@keyframes backspin {
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(-360deg) }
+}
+
+@keyframes fadein {
+    0% { opacity: 0 }
+    100% { opacity: 1 }
+}
+
+@keyframes fadeout {
+    0% {}
+    100% { opacity: 0 }
+}
+
+.portals-title-star {
+    position: relative;
+    flex: none;
+    height: 100%;
+    widtH: 100%;
+    bottom: 100%;
+}
+
+.portals-title-star.two {
+    position: relative;
+    flex: none;
+    left: -45vw;
+    top: 7vw;
+    width: 24vw;
+    height: 24vw;
+    opacity: .5;
+    animation: spin 35s linear infinite;
+}
+
+.portal-container-cont {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.portal-container {
+    position: relative;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+}
+
+.portal {
+    border-radius: 50%;
+    width: 95%;
+    aspect-ratio: 1/1;
+    background-color: transparent;
+    border: 1vw solid rgba(188, 124, 231, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.portal-text {
+    display: none;
+}
+
+.portal:hover .portal-text {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    border-radius: 50%;
+    opacity: .9;
+}
+
+.portal-text-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75%;
+    width: 75%;
+    font-size: 1.6vw;
+}
+
+.portal-container.left {
+    right: 4.5vw;
+    bottom: 6vw;
+    width: 21vw;
+    height: 21vw;
+}
+
+.portal-container.leftmid {
+    top: 5vw;
+    right: .5vw;
+    width: 22vw;
+    height: 22vw;
+}
+
+.portal-container.rightmid {
+    bottom: 17vw;
+    right: 4.5vw;
+    width: 25vw;
+    height: 25vw;
+}
+
+.portal-container.right {
+    top: 4vw;
+    width: 21vw;
+    height: 21vw;
+}
+
+.portal-image {
+    height: 100%;
+}

@@ -1,0 +1,146 @@
+<link href='https://fonts.googleapis.com/css?family=Allerta Stencil' rel='stylesheet'></link>
+<link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'></link>
+<link href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'></link>
+<link href='https://fonts.googleapis.com/css?family=Koh Santepheap' rel='stylesheet'></link>
+<link href='https://fonts.googleapis.com/css?family=Marck Script' rel='stylesheet'></link>
+<link href='https://fonts.googleapis.com/css?family=Duru Sans' rel='stylesheet'/>
+<!doctype html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf‑8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Nathan Robbins – Portfolio</title>
+
+    <link rel="stylesheet" href="App.css" />
+    <style media="print">
+      body,
+      .scrollable-window {
+        overflow: visible !important;
+        height: auto !important;
+      }
+    
+      .main-page-content,
+      .landing-section,
+      .scroll-indicator {
+        transform: none !important;
+        opacity: 1 !important;
+        animation: none !important;
+      }
+    
+      .scroll-indicator,
+      .decoration-bubble {
+        display: none !important;
+      }
+  </style>
+</head>
+<body>
+
+<div class="screen">
+    <div class="topbar">
+        Nathan Robbins
+        <div class="topbar-menu">
+            <span class="menu-opt" onclick="window.location.href='/cs1300/Portfolio/';" tabindex="1">Home</span>
+            <span class="menu-opt" tabindex="2">Resume</span>
+            <span class="menu-opt" tabindex="3">Contact</span>
+        </div>
+    </div>
+
+  <div class="scrollable-window" id="scrollcont">
+    <div class="main-page-content">
+      <div class="banner-container">
+        <div class="circles">
+          <div class="circle blue"><span class="text-1">Software</span></div>
+          <div class="circle yellow">
+            <div class="circle-text">
+              <span class="text-2">should</span>
+              <span class="text-3">make</span>
+            </div>
+          </div>
+          <div class="circle purple">
+            <div class="circle-text">
+              <span class="text-4">us</span>
+              <span class="text-5">better</span>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-indicator">
+          <img class="scroll-indicator-image" src="Images/DownArrow.png" alt="Down arrow icon prompting the user to scroll for more content"/>
+        </div>
+      </div>
+
+      <div class="personal-statement-container">
+        <div class="personal-statement-text">
+          <span class="statement-text-snippet">Hi, I'm </span>
+          <span class="statement-text-snippet">Nathan Robbins</span>
+          <span class="statement-text-snippet">, a student developer and game designer living in Providence, RI.</span>
+          <span class="statement-text-snippet"> I </span>
+          <span id="rotator‑1" class="statement-text-snippet"></span>
+          <span class="statement-text-snippet">that </span>
+          <span class="statement-text-snippet">empower </span>
+          <span class="statement-text-snippet">users with </span>
+          <span id="rotator‑2" class="statement-text-snippet"></span>.
+        </div>
+      </div>
+
+      <div class="portals">
+        <div class="portals-title-container">
+          <div class="pt-circles-parent">
+          </div>
+        </div>
+
+        <div class="portal-container-cont">
+          <div class="portal-container left">
+            <div onclick="window.location.href='/cs1300/Pages/Storyboarding/';" class="portal" tabindex="4">
+              <img class="portal-image" src="Images/kiosk_sketch.png" alt="Sketch of CVS self‑checkout kiosk used for user‑experience analysis"/>
+                <div class="portal-text">
+                    <div class="portal-text-content">
+                        Used observational analysis and constructed personas to assess usability. (Click for more.)
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="portal-container leftmid">
+            <div class="portal" onclick="window.location.href='/cs1300/Pages/AccessibleComponents/';" tabindex="5">
+              <img class="portal-image" src="Images/search_image.png" alt="Illustration of an accessible, intuitive search bar component"/>
+                <div class="portal-text">
+                    <div class="portal-text-content">
+                        Designed a search component to maximize intuitiveness and accommodate keyboard users. (Click for more.)
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="portal-container rightmid">
+            <div class="portal" onclick="window.location.href='/cs1300/Pages/Redesign/';" tabindex="6">
+              <img class="portal-image" src="Images/redesign_image.png" alt="Mock‑up of a redesigned local business webpage focusing on usability"/>
+                <div class="portal-text">
+                    <div class="portal-text-content">
+                        Redesigned local business's webpage to improve usability and accessibility. (Click for more.)
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="portal-container right">
+            <div class="portal" onclick="window.location.href='/cs1300/Pages/IterativeDesign/';" tabindex="7">
+              <img class="portal-image" src="Images/spreadsheet_image.png" alt="Concept graphic of a CSV import interface with user‑friendly design"/>
+                <div class="portal-text">
+                    <div class="portal-text-content">
+                        Worked with a team to design a user‑friendly interface for the CSV‑import feature. (Click for more.)
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stars"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
