@@ -38,7 +38,7 @@ let starfieldActive = false;
 let glowClusterActive = false;
 
 function ensureStarfield() {
-    if (starfieldActive) return regenerateStarfield();
+    if (starfieldActive) return;
     regenerateStarfield();
     starfieldActive = true;
 }
@@ -81,12 +81,11 @@ function clearStarfield() {
 
 function ensureGlowCluster() {
     if (glowClusterActive) return;
-    const host = querySelect('.banner-container');
-    const circlesContainer = querySelect('.circles');
-    if (!host || !circlesContainer) return;
+    const host = querySelect('.portals-title-container');
+    if (!host) return;
 
     const hostRect = host.getBoundingClientRect();
-    const circleEls = querySelectAll('.circles .circle');
+    const circleEls = querySelectAll('.portals-title-circle');
     if (!circleEls.length) return;
 
     const cluster = document.createElement('div');
@@ -99,13 +98,12 @@ function ensureGlowCluster() {
         const rect = circle.getBoundingClientRect();
         const cx = rect.left - hostRect.left + rect.width / 2;
         const cy = rect.top - hostRect.top + rect.height / 2;
-        const radius = rect.width / 2;
+        const radius = Math.min(rect.width, rect.height) / 2;
 
         for (let i = 0; i < dotsPerCircle; i++) {
             const d = document.createElement('div');
             d.className = 'glow-dot';
             const size = Math.random() * 7 + 2; // 2-9px
-            // Even distribution inside circle area
             const r = Math.sqrt(Math.random()) * radius * (0.9 + Math.random() * 0.2);
             const angle = Math.random() * Math.PI * 2;
             const x = cx + r * Math.cos(angle) - size / 2;
@@ -184,13 +182,16 @@ function handleScroll(e) {
 
     if (darkActive) {
         ensureStarfield();
+        const starsEl = querySelect('.stars');
+        if (starsEl) starsEl.style.display = 'block';
         ensureGlowCluster();
         // Hide big banner circles too
         querySelectAll('.circle').forEach(c => { c.style.display = 'none'; });
         querySelectAll('.portals-title-circle').forEach(c => { c.style.opacity = 0; c.style.display = 'none'; });
         querySelectAll('.portals-title-star').forEach(s => { s.style.opacity = 0; });
     } else {
-        clearStarfield();
+        const starsEl = querySelect('.stars');
+        if (starsEl) starsEl.style.display = 'none';
         clearGlowCluster();
         // Restore big banner circles
         querySelectAll('.circle').forEach(c => { c.style.display = ''; c.style.opacity = ''; });
