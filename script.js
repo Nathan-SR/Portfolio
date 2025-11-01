@@ -37,30 +37,40 @@ function makeRotator(element, data, interval = 3000) {
 let starfieldActive = false;
 let glowClusterActive = false;
 
-function ensureStarfield(count = 220) {
-    if (starfieldActive) return;
+function ensureStarfield() {
+    if (starfieldActive) return regenerateStarfield();
+    regenerateStarfield();
+    starfieldActive = true;
+}
+
+function regenerateStarfield() {
     const container = querySelect('.stars');
     if (!container) return;
+    const host = querySelect('.main-page-content');
+    const width = host ? host.clientWidth : window.innerWidth;
+    const height = host ? host.scrollHeight : window.innerHeight;
+    const area = width * height;
+    const density = 0.00015; // stars per pixel
+    const count = Math.max(200, Math.min(1400, Math.floor(area * density)));
+
     const frag = document.createDocumentFragment();
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
     for (let i = 0; i < count; i++) {
         const s = document.createElement('div');
         s.className = 'star';
-        const size = (Math.random() < 0.7 ? (Math.random() * 1.5 + 0.5) : (Math.random() * 2.5 + 0.5));
+        const size = (Math.random() < 0.75 ? (Math.random() * 1.4 + 0.6) : (Math.random() * 2.6 + 0.6));
         s.style.width = `${size}px`;
         s.style.height = `${size}px`;
-        s.style.left = `${Math.random() * vw}px`;
-        s.style.top = `${Math.random() * vh}px`;
+        s.style.left = `${Math.random() * width}px`;
+        s.style.top = `${Math.random() * height}px`;
         const duration = Math.random() * 5 + 3;
         const delay = Math.random() * 5;
         s.style.animationDuration = `${duration}s`;
         s.style.animationDelay = `${delay}s`;
         frag.appendChild(s);
     }
+    container.style.height = `${height}px`;
     container.innerHTML = '';
     container.appendChild(frag);
-    starfieldActive = true;
 }
 
 function clearStarfield() {
@@ -71,32 +81,55 @@ function clearStarfield() {
 
 function ensureGlowCluster() {
     if (glowClusterActive) return;
-    const host = querySelect('.portals-title-container');
-    if (!host) return;
+    const host = querySelect('.banner-container');
+    const circlesContainer = querySelect('.circles');
+    if (!host || !circlesContainer) return;
+
+    const hostRect = host.getBoundingClientRect();
+    const circleEls = querySelectAll('.circles .circle');
+    if (!circleEls.length) return;
+
     const cluster = document.createElement('div');
     cluster.className = 'glow-cluster';
-    const count = 120;
+
     const frag = document.createDocumentFragment();
-    for (let i = 0; i < count; i++) {
-        const d = document.createElement('div');
-        d.className = 'glow-dot';
-        const size = Math.random() * 8 + 2; // px
-        d.style.width = `${size}px`;
-        d.style.height = `${size}px`;
-        d.style.left = `${Math.random() * 100}%`;
-        d.style.top = `${Math.random() * 100}%`;
-        frag.appendChild(d);
-    }
+    const dotsPerCircle = 90;
+
+    circleEls.forEach(circle => {
+        const rect = circle.getBoundingClientRect();
+        const cx = rect.left - hostRect.left + rect.width / 2;
+        const cy = rect.top - hostRect.top + rect.height / 2;
+        const radius = rect.width / 2;
+
+        for (let i = 0; i < dotsPerCircle; i++) {
+            const d = document.createElement('div');
+            d.className = 'glow-dot';
+            const size = Math.random() * 7 + 2; // 2-9px
+            // Even distribution inside circle area
+            const r = Math.sqrt(Math.random()) * radius * (0.9 + Math.random() * 0.2);
+            const angle = Math.random() * Math.PI * 2;
+            const x = cx + r * Math.cos(angle) - size / 2;
+            const y = cy + r * Math.sin(angle) - size / 2;
+            d.style.width = `${size}px`;
+            d.style.height = `${size}px`;
+            d.style.left = `${x}px`;
+            d.style.top = `${y}px`;
+            frag.appendChild(d);
+        }
+    });
+
     cluster.appendChild(frag);
     host.appendChild(cluster);
     glowClusterActive = true;
 }
 
 function clearGlowCluster() {
-    const host = querySelect('.portals-title-container');
-    if (!host) return;
-    const existing = host.querySelector('.glow-cluster');
-    if (existing) host.removeChild(existing);
+    const host1 = querySelect('.banner-container');
+    const host2 = querySelect('.portals-title-container');
+    const existing1 = host1 ? host1.querySelector('.glow-cluster') : null;
+    const existing2 = host2 ? host2.querySelector('.glow-cluster') : null;
+    if (existing1 && host1) host1.removeChild(existing1);
+    if (existing2 && host2) host2.removeChild(existing2);
     glowClusterActive = false;
 }
 
@@ -222,4 +255,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize state based on current scroll position
     const sc = querySelect("#scrollcont");
     if (sc) handleScroll({ currentTarget: sc });
+
+    // Regenerate stars on resize when active
+    window.addEventListener('resize', () => {
+        if (starfieldActive) regenerateStarfield();
+    });
 });
