@@ -34,6 +34,72 @@ function makeRotator(element, data, interval = 3000) {
     return setInterval(swap, interval);
 }
 
+let starfieldActive = false;
+let glowClusterActive = false;
+
+function ensureStarfield(count = 220) {
+    if (starfieldActive) return;
+    const container = querySelect('.stars');
+    if (!container) return;
+    const frag = document.createDocumentFragment();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    for (let i = 0; i < count; i++) {
+        const s = document.createElement('div');
+        s.className = 'star';
+        const size = (Math.random() < 0.7 ? (Math.random() * 1.5 + 0.5) : (Math.random() * 2.5 + 0.5));
+        s.style.width = `${size}px`;
+        s.style.height = `${size}px`;
+        s.style.left = `${Math.random() * vw}px`;
+        s.style.top = `${Math.random() * vh}px`;
+        const duration = Math.random() * 5 + 3;
+        const delay = Math.random() * 5;
+        s.style.animationDuration = `${duration}s`;
+        s.style.animationDelay = `${delay}s`;
+        frag.appendChild(s);
+    }
+    container.innerHTML = '';
+    container.appendChild(frag);
+    starfieldActive = true;
+}
+
+function clearStarfield() {
+    const container = querySelect('.stars');
+    if (container) container.innerHTML = '';
+    starfieldActive = false;
+}
+
+function ensureGlowCluster() {
+    if (glowClusterActive) return;
+    const host = querySelect('.portals-title-container');
+    if (!host) return;
+    const cluster = document.createElement('div');
+    cluster.className = 'glow-cluster';
+    const count = 120;
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < count; i++) {
+        const d = document.createElement('div');
+        d.className = 'glow-dot';
+        const size = Math.random() * 8 + 2; // px
+        d.style.width = `${size}px`;
+        d.style.height = `${size}px`;
+        d.style.left = `${Math.random() * 100}%`;
+        d.style.top = `${Math.random() * 100}%`;
+        frag.appendChild(d);
+    }
+    cluster.appendChild(frag);
+    host.appendChild(cluster);
+    glowClusterActive = true;
+}
+
+function clearGlowCluster() {
+    const host = querySelect('.portals-title-container');
+    if (!host) return;
+    const existing = host.querySelector('.glow-cluster');
+    if (existing) host.removeChild(existing);
+    glowClusterActive = false;
+}
+
 const portalIds = ["six","zero","one","three","four","five","seven","eight"];
 const idToFilter = {
     zero : "brightness(0) saturate(100%) invert(100%) sepia(61%) saturate(1782%) hue-rotate(308deg) brightness(115%) contrast(100%)",
@@ -81,11 +147,19 @@ function handleScroll(e) {
     const vh20 = 0.2 * innerHeight;
     const scrollThreshold = 0.6 * window.innerHeight;
 
-    const circleOpacityStyle = scrollY > scrollThreshold ? 1 - (scrollY - scrollThreshold) / 100 : (scrollY - scrollThreshold / 50) / 1;   
-    const starOpacityStyle = scrollY > scrollThreshold ? (-1 + (scrollY - scrollThreshold) / 100) : 0;
+    const darkActive = scrollY > scrollThreshold;
 
-    querySelectAll('.portals-title-circle').forEach(c => c.style.opacity = circleOpacityStyle );
-    querySelectAll('.portals-title-star').forEach(s => s.style.opacity = starOpacityStyle );
+    if (darkActive) {
+        ensureStarfield();
+        ensureGlowCluster();
+        querySelectAll('.portals-title-circle').forEach(c => { c.style.opacity = 0; c.style.display = 'none'; });
+        querySelectAll('.portals-title-star').forEach(s => { s.style.opacity = 0; });
+    } else {
+        clearStarfield();
+        clearGlowCluster();
+        querySelectAll('.portals-title-circle').forEach(c => { c.style.display = ''; c.style.opacity = ''; });
+        querySelectAll('.portals-title-star').forEach(s => { s.style.opacity = 0; });
+    }
 
     querySelect(".scroll-indicator").style.opacity = `${0.5 - scrollY / 150}`;
     querySelect(".personal-statement-container").style.top = `${-scrollY}px`;
@@ -113,7 +187,7 @@ function handleScroll(e) {
             circle.style.animation = `bob ${dur} ease-in-out infinite`;
     }});
 
-    querySelect(".portals-title-star.two").style.opacity = `${(scrollY - vh20) / 200}`;
+    querySelect(".portals-title-star.two").style.opacity = darkActive ? '0' : `${(scrollY - vh20) / 200}`;
 
     querySelect(".scrollable-window").style.backgroundColor = `rgba(0,0,0,${(scrollY - vh20 * 3) / 200})`;
 
