@@ -20,7 +20,7 @@ function makeRotator(element, data, interval = 3000) {
             element.textContent = word;
             element.style.color = color;
             element.style.fontFamily = font;
-            element.style.fontSize = font === "Marck Script" ? "3vw" : "";
+            element.style.fontSize = font === "Marck Script" ? "1.2em" : "";
             element.classList.remove("fading");
             visible = true;
         }, 600);
@@ -100,7 +100,7 @@ function ensureGlowCluster() {
         const cy = rect.top - hostRect.top + rect.height / 2;
         const radius = Math.min(rect.width, rect.height) / 2;
 
-        for (let i = 0; i < rect.width * rect.height / 2; i++) {
+        for (let i = 0; i < rect.width * rect.height / 200; i++) {
             const d = document.createElement('div');
             d.className = 'glow-dot';
             const size = Math.random() * 7 + 2; // 2-9px
