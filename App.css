@@ -244,6 +244,9 @@ body {
     border-radius: 50%;
     width: 100%;
     height: 100%;
+    /* White fading glow */
+    background: radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.35) 45%, rgba(255,255,255,0) 70%);
+    box-shadow: 0 0 16px rgba(255,255,255,0.25), 0 0 32px rgba(255,255,255,0.15);
 }
 
 @keyframes portals-circle-bob {
@@ -264,7 +267,7 @@ body {
 }
 
 .portals-title-circle.zero {
-    background-color: rgba(255, 98, 0, 0.3);
+    background-color: transparent !important;
     animation: portals-circle-bob 7s ease-in-out infinite;
 }
 
@@ -276,7 +279,7 @@ body {
 }
 
 .portals-title-circle.one {
-    background-color:  rgb(131, 228, 255, .25);
+    background-color: transparent !important;
     animation: portals-circle-bob 4s ease-in-out infinite;
 }
 
@@ -288,7 +291,7 @@ body {
 }
 
 .portals-title-circle.three {
-    background-color: rgb(131, 228, 255, .35);
+    background-color: transparent !important;
     animation: portals-circle-bob 3s ease-in-out infinite;
 }
 
@@ -300,7 +303,7 @@ body {
 }
 
 .portals-title-circle.four {
-    background-color: rgb(248, 211, 142, .4);
+    background-color: transparent !important;
     animation: portals-circle-bob 6s ease-in-out infinite;
 }
 
@@ -312,7 +315,7 @@ body {
 }
 
 .portals-title-circle.five {
-    background-color: rgba(188, 124, 231, 0.3);
+    background-color: transparent !important;
     animation: portals-circle-bob 4s ease-in-out infinite;
 }
 
@@ -324,7 +327,7 @@ body {
 }
 
 .portals-title-circle.six {
-    background-color: rgba(188, 124, 231, 0.5);
+    background-color: transparent !important;
     animation: portals-circle-bob 3s ease-in-out infinite;
 }
 
