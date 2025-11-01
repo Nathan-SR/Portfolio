@@ -92,7 +92,7 @@ function ensureGlowCluster() {
     cluster.className = 'glow-cluster';
 
     const frag = document.createDocumentFragment();
-    const dotsPerCircle = 90;
+    const dotsPerCircle = 65; // slightly less dense
 
     circleEls.forEach(circle => {
         const rect = circle.getBoundingClientRect();
@@ -104,10 +104,13 @@ function ensureGlowCluster() {
             const d = document.createElement('div');
             d.className = 'glow-dot';
             const size = Math.random() * 7 + 2; // 2-9px
-            const r = Math.sqrt(Math.random()) * radius * (0.9 + Math.random() * 0.2);
+            // Slightly randomized around the circle edges with small jitter
+            const r = Math.sqrt(Math.random()) * radius * (0.85 + Math.random() * 0.4); // 0.85r to 1.25r
             const angle = Math.random() * Math.PI * 2;
-            const x = cx + r * Math.cos(angle) - size / 2;
-            const y = cy + r * Math.sin(angle) - size / 2;
+            const jitterX = (Math.random() - 0.5) * 8; // ±4px
+            const jitterY = (Math.random() - 0.5) * 8; // ±4px
+            const x = cx + r * Math.cos(angle) + jitterX - size / 2;
+            const y = cy + r * Math.sin(angle) + jitterY - size / 2;
             d.style.width = `${size}px`;
             d.style.height = `${size}px`;
             d.style.left = `${x}px`;
@@ -261,4 +264,10 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('resize', () => {
         if (starfieldActive) regenerateStarfield();
     });
+
+    // Preload starfield immediately but keep hidden until scrolled into view
+    regenerateStarfield();
+    starfieldActive = true;
+    const starsEl = querySelect('.stars');
+    if (starsEl) starsEl.style.display = 'none';
 });
