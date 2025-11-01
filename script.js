@@ -152,11 +152,15 @@ function handleScroll(e) {
     if (darkActive) {
         ensureStarfield();
         ensureGlowCluster();
+        // Hide big banner circles too
+        querySelectAll('.circle').forEach(c => { c.style.display = 'none'; });
         querySelectAll('.portals-title-circle').forEach(c => { c.style.opacity = 0; c.style.display = 'none'; });
         querySelectAll('.portals-title-star').forEach(s => { s.style.opacity = 0; });
     } else {
         clearStarfield();
         clearGlowCluster();
+        // Restore big banner circles
+        querySelectAll('.circle').forEach(c => { c.style.display = ''; c.style.opacity = ''; });
         querySelectAll('.portals-title-circle').forEach(c => { c.style.display = ''; c.style.opacity = ''; });
         querySelectAll('.portals-title-star').forEach(s => { s.style.opacity = 0; });
     }
@@ -215,4 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     querySelect("#scrollcont").addEventListener("scroll", handleScroll);
+    // Initialize state based on current scroll position
+    const sc = querySelect("#scrollcont");
+    if (sc) handleScroll({ currentTarget: sc });
 });
