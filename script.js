@@ -99,11 +99,11 @@ function ensureGlowCluster() {
         const cy = rect.top - hostRect.top + rect.height / 2;
         const radius = Math.min(rect.width, rect.height) / 2;
 
-        for (let i = 0; i < rect.width * rect.height / 200; i++) {
+        for (let i = 0; i < rect.width * rect.height / 400; i++) {
             const d = document.createElement('div');
             d.className = 'glow-dot';
-            const size = Math.random() * 7 + 2; // 2-9px
-            const r = Math.sqrt(Math.random()) * radius * (0.85 + Math.random() * 0.8); // 0.85r to 1.25r
+            const size = Math.random() * 5 + 2; // 2-9px
+            const r = Math.sqrt(Math.random()) * radius * (0.85 + Math.random() * 0.8); // 0.85r to 1.65r
             const angle = Math.random() * Math.PI * 2;
             const jitterX = (Math.random() - 0.25) * 16; // ±4px
             const jitterY = (Math.random() - 0.25) * 16; // ±4px
