@@ -127,7 +127,14 @@ function ensureGlowCluster() {
                 { r: 235, g: 215, b: 255 }, // faint purple
                 { r: 255, g: 240, b: 200 }, // faint yellow
             ];
-            const c = palette[Math.floor(Math.random() * palette.length)];
+            var rand = Math.random() * 2;
+            var c;
+            if (rand > 1) {
+                c = palette[Math.floor(Math.random() * palette.length)];
+            } else {
+                c = { r: 255, g: 255, b: 255 }
+            }
+            
             d.style.background = `radial-gradient(circle, rgba(${c.r},${c.g},${c.b},0.75) 0%, rgba(${c.r},${c.g},${c.b},0.45) 40%, rgba(${c.r},${c.g},${c.b},0) 70%)`;
             d.style.boxShadow = `0 0 10px rgba(${c.r},${c.g},${c.b},0.35), 0 0 20px rgba(${c.r},${c.g},${c.b},0.2)`;
             frag.appendChild(d);
