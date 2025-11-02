@@ -135,7 +135,7 @@ function ensureGlowCluster() {
                 c = { r: 255, g: 255, b: 255 }
             }
             
-            d.style.background = `radial-gradient(circle, rgba(${c.r},${c.g},${c.b},0.75) 0%, rgba(${c.r},${c.g},${c.b},0.45) 40%, rgba(${c.r},${c.g},${c.b},0) 70%)`;
+            d.style.background = `radial-gradient(circle, rgba(${c.r},${c.g},${c.b},1) 0%, rgba(${c.r},${c.g},${c.b},0.45) 40%, rgba(${c.r},${c.g},${c.b},0) 70%)`;
             d.style.boxShadow = `0 0 10px rgba(${c.r},${c.g},${c.b},0.35), 0 0 20px rgba(${c.r},${c.g},${c.b},0.2)`;
             frag.appendChild(d);
         }
