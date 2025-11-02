@@ -166,6 +166,50 @@ function buildPortalShapes() {
     parent.appendChild(middleStar);
 }
 
+function buildMidStarGlowCluster() {
+    const container = querySelect('.portals-title-container');
+    const midStar = querySelect('.portals-title-star.two');
+    if (!container || !midStar) return;
+
+    const existing = container.querySelector('.midstar-glow-cluster');
+    if (existing) existing.remove();
+
+    const containerRect = container.getBoundingClientRect();
+    const starRect = midStar.getBoundingClientRect();
+
+    const cluster = document.createElement('div');
+    cluster.className = 'midstar-glow-cluster';
+    cluster.style.left = `${starRect.left - containerRect.left}px`;
+    cluster.style.top = `${starRect.top - containerRect.top}px`;
+    cluster.style.width = `${starRect.width}px`;
+    cluster.style.height = `${starRect.height}px`;
+
+    const frag = document.createDocumentFragment();
+    const radius = Math.min(starRect.width, starRect.height) / 2;
+    const cx = starRect.width / 2;
+    const cy = starRect.height / 2;
+    const count = Math.floor((starRect.width * starRect.height) / 700);
+    for (let i = 0; i < count; i++) {
+        const d = document.createElement('div');
+        d.className = 'glow-dot';
+        const size = Math.random() * 4 + 2;
+        const r = Math.sqrt(Math.random()) * radius * (0.85 + Math.random() * 1.0);
+        const angle = Math.random() * Math.PI * 2;
+        const jitterX = (Math.random() - 0.5) * 8;
+        const jitterY = (Math.random() - 0.5) * 8;
+        const x = cx + r * Math.cos(angle) + jitterX - size / 2;
+        const y = cy + r * Math.sin(angle) + jitterY - size / 2;
+        d.style.width = `${size}px`;
+        d.style.height = `${size}px`;
+        d.style.left = `${x}px`;
+        d.style.top = `${y}px`;
+        d.style.position = 'absolute';
+        frag.appendChild(d);
+    }
+    cluster.appendChild(frag);
+    container.appendChild(cluster);
+}
+
 function handleScroll(e) {
     const scrollY = e.currentTarget.scrollTop;
     const vh20 = 0.2 * innerHeight;
@@ -187,6 +231,8 @@ function handleScroll(e) {
         querySelectAll('.portals-title-circle').forEach(c => { c.style.opacity = String(1 - t); c.style.display = ''; });
         const cluster = querySelect('.glow-cluster');
         if (cluster) cluster.style.opacity = String(t);
+        const midCluster = querySelect('.midstar-glow-cluster');
+        if (midCluster) midCluster.style.opacity = String(1 - t);
     } else {
         const starsEl = querySelect('.stars');
         if (starsEl) starsEl.style.display = 'none';
@@ -194,6 +240,8 @@ function handleScroll(e) {
         const cluster = querySelect('.glow-cluster');
         if (cluster) cluster.style.opacity = '0';
         querySelectAll('.portals-title-circle').forEach(c => { c.style.display = ''; c.style.opacity = String(1 - t); });
+        const midCluster = querySelect('.midstar-glow-cluster');
+        if (midCluster) midCluster.style.opacity = '1';
     }
 
     querySelect(".scroll-indicator").style.opacity = `${0.5 - scrollY / 150}`;
@@ -235,6 +283,7 @@ function handleScroll(e) {
 
 document.addEventListener("DOMContentLoaded", () => {
     buildPortalShapes();
+    buildMidStarGlowCluster();
 
     makeRotator(
         querySelect("#rotator‑1"), [
@@ -259,6 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Regenerate stars on resize when active
     window.addEventListener('resize', () => {
         if (starfieldActive) regenerateStarfield();
+        buildMidStarGlowCluster();
     });
 
     // Preload starfield immediately but keep hidden until scrolled into view
