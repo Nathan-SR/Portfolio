@@ -49,7 +49,13 @@
                         <span class="page-description-text italic">A hybrid of the tower-defense and deck-building roguelike genres. The core of the game is flexibility: players can design almost any tower they can imagine—provided they play their cards right.</span>
                         <br/>
                         <br/>
-                        <span class="page-description-text">I began this project simply to get familiar with a game engine. Over time, it’s grown into much more: a playground for experimentation, a testbed for new systems, and a collaborative codebase built with two close friends. It’s been my first experience designing and maintaining a large game project from the ground up with others.</span>
+                        <span class="page-description-text">I began this project simply to get familiar with a game engine. Over time, it’s grown into much more: a playground for 
+                        <span class="page-description-text green">experimentation</span>
+                        <span class="page-description-text">, a testbed for new systems, and a </span>
+                        <span class="page-description-text blue">collaborative</span>
+                        <span class="page-description-text">codebase built with two close friends. It’s been my first experience designing and 
+                        <span class="page-description-text red">maintaining</span>
+                        <span class="page-description-text">a large game project from the ground up with others.</span>
                         <br/>
                         <br/>
                         <span class="page-description-text">The project is still in active development, but below are a few features I’m most proud of.</span>
@@ -72,21 +78,33 @@
                     <video controls autoplay loop muted playsinline width="100%">
                         <source src="Images/TowersDemo.mp4" type="video/mp4">
                     </video>
+                     <div class="image-caption">
+                        Short gameplay snippet featuring tower upgrades, pathfinding, enemies, and more.
+                    </div>
                 </div>
             </div>
             <div class="divider large visible"></div>
+            <div class="divider large"></div>
+            <div class="divider large"></div>
+            <div class="divider large"></div>
             <div class="section-title">
                 Card System
             </div>
             <div class="divider"></div>
+            <div class='section-description'>
+            The card system in my game-like most of its other features-is designed with modularity in mind. To that end, I employ a range of functional and data-driven paradigms in its design.
+            </div>
             <div class='images-panel bubble'>
                 <div class="image-container">
                     <img class="image" src="Images/card_storage.png" alt="Image showing JSON-like format cards are stored in."/>
+                    <div class="image-caption">
+                        Data-driven JSON-like card loading.
+                    </div>
                 </div>
                 <div class="text-bubble-container">
                     <div class='text-bubble blue'>
                         <div class='text-bubble-text'>
-                        Data-driven JSON-like card loading for easy extension and analysis. 
+                        By keeping my cards centralized in a JSON-like database, I can easily serialize many of their attributes. Using this system, I can create up to 3/4 of most new cards without needing to write more than a few lines of code. 
                         </div>
                     </div>
                 </div>
@@ -95,12 +113,15 @@
                 <div class="text-bubble-container">
                     <div class='text-bubble yellow'>
                         <div class='text-bubble-text'>
-                        Command pattern for card actions allows for easy addition of drop-in effects, trivializing the effort required to add many new cards.
+                        Command pattern for card actions allows for easy addition of drop-in effects, further reducing the cumulative burden of adding new cards.
                         </div>
                     </div>
                 </div>
                 <div class="image-container">
                     <img class="image" src="Images/command_pattern.png" alt="Amazon search dropdown with AI chat suggestion"/>
+                    <div class="image-caption">
+                        Small pseudocode snippet illustrating the general architecture of my CardEffect components.
+                    </div>
                 </div>
             </div>
             <div class='divider large visible'></div>
@@ -121,7 +142,14 @@
                 <br/>
                 <span class="page-description-text bold">3. Main Map Generation</span>
                 <br/>
+                <br/>
                 Created map generation algorithm to simulate a Slay the Spire-like progression map.
+                <br/>
+                <br/>
+                <span class="page-description-text bold">4. Card Dragging Shader</span>
+                <br/>
+                <br/>
+                Created vertex shader to simulate 3D card dragging.
                 </div>
             </div>
         </div>
