@@ -426,6 +426,12 @@ body {
     position: relative;
 }
 
+/* White glowing outline for the Redesign portal (rightmid) */
+.portal-container.rightmid .portal {
+    border: 1vw solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.5), 0 0 36px rgba(255, 255, 255, 0.25);
+}
+
 .portal-text {
     display: none;
 }
