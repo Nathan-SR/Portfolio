@@ -123,9 +123,9 @@ function ensureGlowCluster() {
             d.style.top = `${y}px`;
             // subtle color tint
             const palette = [
-                { r: 158, g: 223, b: 255 }, // faint blue
-                { r: 214, g: 177, b: 240 }, // faint purple
-                { r: 255, g: 230, b: 168 }, // faint yellow
+                { r: 230, g: 245, b: 255 }, // faint blue
+                { r: 235, g: 215, b: 255 }, // faint purple
+                { r: 255, g: 240, b: 200 }, // faint yellow
             ];
             const c = palette[Math.floor(Math.random() * palette.length)];
             d.style.background = `radial-gradient(circle, rgba(${c.r},${c.g},${c.b},0.75) 0%, rgba(${c.r},${c.g},${c.b},0.45) 40%, rgba(${c.r},${c.g},${c.b},0) 70%)`;
