@@ -6,6 +6,14 @@ function querySelectAll(element) {
     return Array.from(document.querySelectorAll(element));
 }
 
+function querySelectAny(selectors) {
+    for (const sel of selectors) {
+        const el = document.querySelector(sel);
+        if (el) return el;
+    }
+    return null;
+}
+
 function makeRotator(element, data, interval = 3000) {
     let i = 0;
     let visible = true;
@@ -264,8 +272,10 @@ function handleScroll(e) {
         if (midCluster) midCluster.style.opacity = '1';
     }
 
-    querySelect(".scroll-indicator").style.opacity = `${0.5 - scrollY / 150}`;
-    querySelect(".personal-statement-container").style.top = `${-scrollY}px`;
+    const si = querySelect(".scroll-indicator");
+    if (si) si.style.opacity = `${0.5 - scrollY / 150}`;
+    const psc = querySelect(".personal-statement-container");
+    if (psc) psc.style.top = `${-scrollY}px`;
 
     querySelectAll(".circle").forEach(circle => {
         circle.style.opacity = String((100 - scrollY / 4) / 100);
@@ -305,22 +315,25 @@ document.addEventListener("DOMContentLoaded", () => {
     buildPortalShapes();
     buildMidStarGlowCluster();
 
-    makeRotator(
-        querySelect("#rotator‑1"), [
+    const rot1 = querySelectAny(["#rotator‑1", "#rotator-1"]);
+    if (rot1) makeRotator(
+        rot1, [
         { word: "make games ", color: "rgb(107,79,151)", font: "Aldrich" },
         { word: "create tools ", color: "orange", font: "Allerta Stencil" },
         ], 9000
     );
 
-    makeRotator(
-        querySelect("#rotator‑2"), [
+    const rot2 = querySelectAny(["#rotator‑2", "#rotator-2"]);
+    if (rot2) makeRotator(
+        rot2, [
         { word: "agency ", color: "#9e72a6", font: "Aldrich" },
         { word: "ideas ", color: "#82c267", font: "Marck Script" },
         { word: "confidence ", color: "#00bbe0", font: "Koh Santepheap" },
         ], 3000
     );
 
-    querySelect("#scrollcont").addEventListener("scroll", handleScroll);
+    const scrollCont = querySelect("#scrollcont");
+    if (scrollCont) scrollCont.addEventListener("scroll", handleScroll);
     // Initialize state based on current scroll position
     const sc = querySelect("#scrollcont");
     if (sc) handleScroll({ currentTarget: sc });
