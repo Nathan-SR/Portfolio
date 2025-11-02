@@ -92,7 +92,6 @@ function ensureGlowCluster() {
     cluster.className = 'glow-cluster';
 
     const frag = document.createDocumentFragment();
-    const dotsPerCircle = 65; // slightly less dense
 
     circleEls.forEach(circle => {
         const rect = circle.getBoundingClientRect();
@@ -104,8 +103,7 @@ function ensureGlowCluster() {
             const d = document.createElement('div');
             d.className = 'glow-dot';
             const size = Math.random() * 7 + 2; // 2-9px
-            // Slightly randomized around the circle edges with small jitter
-            const r = Math.sqrt(Math.random()) * radius * (0.85 + Math.random() * 0.4); // 0.85r to 1.25r
+            const r = Math.sqrt(Math.random()) * radius * (0.85 + Math.random() * 0.8); // 0.85r to 1.25r
             const angle = Math.random() * Math.PI * 2;
             const jitterX = (Math.random() - 0.25) * 16; // ±4px
             const jitterY = (Math.random() - 0.25) * 16; // ±4px
