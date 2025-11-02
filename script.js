@@ -157,15 +157,6 @@ function buildPortalShapes() {
         circle.className = `portals-title-circle ${id}`;
         w.appendChild(circle);
 
-        const star = document.createElement("img");
-        star.src = "Images/Star.png";
-        star.className = `portals-title-star ${id}`;
-        const duration = Math.random() * 70 + 30;     
-        const reverse = Math.random() < 0.5;
-        star.style.animation = `${reverse ? "backspin":"spin"} ${duration}s linear infinite`;
-        star.style.filter = idToFilter[id];
-
-        w.appendChild(star);
         parent.appendChild(w);
     });
 
@@ -194,7 +185,6 @@ function handleScroll(e) {
         ensureGlowCluster();
         // Crossfade circles/stars to glow dots
         querySelectAll('.portals-title-circle').forEach(c => { c.style.opacity = String(1 - t); c.style.display = ''; });
-        querySelectAll('.portals-title-star').forEach(s => { s.style.opacity = String(1 - t); });
         const cluster = querySelect('.glow-cluster');
         if (cluster) cluster.style.opacity = String(t);
     } else {
@@ -204,7 +194,6 @@ function handleScroll(e) {
         const cluster = querySelect('.glow-cluster');
         if (cluster) cluster.style.opacity = '0';
         querySelectAll('.portals-title-circle').forEach(c => { c.style.display = ''; c.style.opacity = String(1 - t); });
-        querySelectAll('.portals-title-star').forEach(s => { s.style.opacity = String(1 - t); });
     }
 
     querySelect(".scroll-indicator").style.opacity = `${0.5 - scrollY / 150}`;
