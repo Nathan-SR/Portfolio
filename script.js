@@ -230,11 +230,18 @@ function buildMidStarGlowCluster() {
         d.style.position = 'absolute';
         // subtle color tint
         const palette = [
-            { r: 158, g: 223, b: 255 },
-            { r: 214, g: 177, b: 240 },
-            { r: 255, g: 230, b: 168 },
-        ];
-        const c = palette[Math.floor(Math.random() * palette.length)];
+                { r: 230, g: 245, b: 255 }, // faint blue
+                { r: 235, g: 215, b: 255 }, // faint purple
+                { r: 255, g: 240, b: 200 }, // faint yellow
+            ];
+
+        var rand = Math.random() * 4;
+        var c;
+        if (rand > 3) {
+            c = palette[Math.floor(Math.random() * palette.length)];
+        } else {
+            c = { r: 255, g: 255, b: 255 }
+        }
         d.style.background = `radial-gradient(circle, rgba(${c.r},${c.g},${c.b},0.75) 0%, rgba(${c.r},${c.g},${c.b},0.45) 40%, rgba(${c.r},${c.g},${c.b},0) 70%)`;
         d.style.boxShadow = `0 0 8px rgba(${c.r},${c.g},${c.b},0.35), 0 0 16px rgba(${c.r},${c.g},${c.b},0.2)`;
         frag.appendChild(d);
