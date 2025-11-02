@@ -127,9 +127,9 @@ function ensureGlowCluster() {
                 { r: 235, g: 215, b: 255 }, // faint purple
                 { r: 255, g: 240, b: 200 }, // faint yellow
             ];
-            var rand = Math.random() * 2;
+            var rand = Math.random() * 4;
             var c;
-            if (rand > 1) {
+            if (rand > 3) {
                 c = palette[Math.floor(Math.random() * palette.length)];
             } else {
                 c = { r: 255, g: 255, b: 255 }
