@@ -119,6 +119,7 @@ function ensureGlowCluster() {
 
     cluster.appendChild(frag);
     host.appendChild(cluster);
+    cluster.style.opacity = '0';
     glowClusterActive = true;
 }
 
@@ -180,24 +181,30 @@ function handleScroll(e) {
     const scrollThreshold = 0.6 * window.innerHeight;
 
     const darkActive = scrollY > scrollThreshold;
+    const band = 200;
+    const bandStart = scrollThreshold - band / 2;
+    const bandEnd = scrollThreshold + band / 2;
+    const tRaw = (scrollY - bandStart) / (bandEnd - bandStart);
+    const t = Math.max(0, Math.min(1, tRaw));
 
     if (darkActive) {
         ensureStarfield();
         const starsEl = querySelect('.stars');
         if (starsEl) starsEl.style.display = 'block';
         ensureGlowCluster();
-        // Hide big banner circles too
-        querySelectAll('.circle').forEach(c => { c.style.display = 'none'; });
-        querySelectAll('.portals-title-circle').forEach(c => { c.style.opacity = 0; c.style.display = 'none'; });
-        querySelectAll('.portals-title-star').forEach(s => { s.style.opacity = 0; });
+        // Crossfade circles/stars to glow dots
+        querySelectAll('.portals-title-circle').forEach(c => { c.style.opacity = String(1 - t); c.style.display = ''; });
+        querySelectAll('.portals-title-star').forEach(s => { s.style.opacity = String(1 - t); });
+        const cluster = querySelect('.glow-cluster');
+        if (cluster) cluster.style.opacity = String(t);
     } else {
         const starsEl = querySelect('.stars');
         if (starsEl) starsEl.style.display = 'none';
-        clearGlowCluster();
-        // Restore big banner circles
-        querySelectAll('.circle').forEach(c => { c.style.display = ''; c.style.opacity = ''; });
-        querySelectAll('.portals-title-circle').forEach(c => { c.style.display = ''; c.style.opacity = ''; });
-        querySelectAll('.portals-title-star').forEach(s => { s.style.opacity = 0; });
+        // Keep cluster for reuse but hide it; restore circles/stars opacity
+        const cluster = querySelect('.glow-cluster');
+        if (cluster) cluster.style.opacity = '0';
+        querySelectAll('.portals-title-circle').forEach(c => { c.style.display = ''; c.style.opacity = String(1 - t); });
+        querySelectAll('.portals-title-star').forEach(s => { s.style.opacity = String(1 - t); });
     }
 
     querySelect(".scroll-indicator").style.opacity = `${0.5 - scrollY / 150}`;
@@ -226,9 +233,11 @@ function handleScroll(e) {
             circle.style.animation = `bob ${dur} ease-in-out infinite`;
     }});
 
-    querySelect(".portals-title-star.two").style.opacity = darkActive ? '0' : `${(scrollY - vh20) / 200}`;
+    const midStar = querySelect(".portals-title-star.two");
+    if (midStar) midStar.style.opacity = String(1 - t);
 
-    querySelect(".scrollable-window").style.backgroundColor = `rgba(0,0,0,${(scrollY - vh20 * 3) / 200})`;
+    const bgAlpha = Math.max(0, Math.min(1, (scrollY - vh20 * 3) / 200));
+    querySelect(".scrollable-window").style.backgroundColor = `rgba(0,0,0,${bgAlpha})`;
 
     querySelectAll(".portal-container").forEach(element => {
         element.style.opacity = `${(scrollY - 4 * vh20) / 200}`;
