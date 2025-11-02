@@ -228,58 +228,7 @@ function buildMidStarGlowCluster() {
     container.appendChild(cluster);
 }
 
-function buildMidStarGlowCluster() {
-    const container = querySelect('.portals-title-container');
-    const midStar = querySelect('.portals-title-star.two');
-    if (!container || !midStar) return;
-
-    const existing = container.querySelector('.midstar-glow-cluster');
-    if (existing) existing.remove();
-
-    const containerRect = container.getBoundingClientRect();
-    const starRect = midStar.getBoundingClientRect();
-
-    const cluster = document.createElement('div');
-    cluster.className = 'midstar-glow-cluster';
-    cluster.style.left = `${starRect.left - containerRect.left}px`;
-    cluster.style.top = `${starRect.top - containerRect.top}px`;
-    cluster.style.width = `${starRect.width}px`;
-    cluster.style.height = `${starRect.height}px`;
-
-    const frag = document.createDocumentFragment();
-    const radius = Math.min(starRect.width, starRect.height) / 2;
-    const cx = starRect.width / 2;
-    const cy = starRect.height / 2;
-    const count = Math.floor((starRect.width * starRect.height) / 700);
-    for (let i = 0; i < count; i++) {
-        const d = document.createElement('div');
-        d.className = 'glow-dot';
-        const size = Math.random() * 4 + 2;
-        const r = Math.sqrt(Math.random()) * radius * (0.85 + Math.random() * 1.0);
-        const angle = Math.random() * Math.PI * 2;
-        const jitterX = (Math.random() - 0.5) * 8;
-        const jitterY = (Math.random() - 0.5) * 8;
-        const x = cx + r * Math.cos(angle) + jitterX - size / 2;
-        const y = cy + r * Math.sin(angle) + jitterY - size / 2;
-        d.style.width = `${size}px`;
-        d.style.height = `${size}px`;
-        d.style.left = `${x}px`;
-        d.style.top = `${y}px`;
-        d.style.position = 'absolute';
-        // subtle color tint
-        const palette = [
-            { r: 158, g: 223, b: 255 },
-            { r: 214, g: 177, b: 240 },
-            { r: 255, g: 230, b: 168 },
-        ];
-        const c = palette[Math.floor(Math.random() * palette.length)];
-        d.style.background = `radial-gradient(circle, rgba(${c.r},${c.g},${c.b},0.75) 0%, rgba(${c.r},${c.g},${c.b},0.45) 40%, rgba(${c.r},${c.g},${c.b},0) 70%)`;
-        d.style.boxShadow = `0 0 8px rgba(${c.r},${c.g},${c.b},0.35), 0 0 16px rgba(${c.r},${c.g},${c.b},0.2)`;
-        frag.appendChild(d);
-    }
-    cluster.appendChild(frag);
-    container.appendChild(cluster);
-}
+ 
 
 function handleScroll(e) {
     const scrollY = e.currentTarget.scrollTop;
